@@ -33,6 +33,7 @@ Part 2 - Statistical research questions:
  Q1) To find the association between the CHB and Anterior STEMI using the NIS dataset for year 2014?
 
 Test: Chi-square analysis between (CHB and AnteriorSTEMI)
+
 STATA CODE: . tabulate AnteriorSTEMI, chb,chi2
 
 <img width="606" alt="Screen Shot 2023-01-26 at 7 53 51 PM" src="https://user-images.githubusercontent.com/121846325/214983141-8a72e0e1-5ccf-4e08-be98-73de36b27237.png">
@@ -42,6 +43,7 @@ p-value = 0.000. Since this is less than 0.05, we conclude that we have sufficie
 Q2) It is reported that women usually have a lower incidence of cardiac disease than men. Are women more likely to develop CHB than men?
 
 Test: Two-sample t-test with equal variance 
+
 STATA code: .ttest FEMALE if chb == 1
 
 <img width="541" alt="Screen Shot 2023-01-26 at 8 03 45 PM" src="https://user-images.githubusercontent.com/121846325/214984263-5b73996b-3c8d-4fdb-abe1-24f9c3f38619.png">
@@ -51,6 +53,7 @@ The output shows that Number of CHB patients in women is different than in men w
 Q3) It is now well documented that there are profound race-associated among those who are affected by and die from cardiovascular disease (CVD) [2]. Is patient race associated with CHB?
 
 Test: One-way ANOVA
+
 STATA code: . oneway chb RACE, tabulate
 
 <img width="612" alt="Screen Shot 2023-01-26 at 8 05 30 PM" src="https://user-images.githubusercontent.com/121846325/214984439-8c271add-e04b-4c00-bb08-7d4441882286.png">
@@ -58,6 +61,7 @@ STATA code: . oneway chb RACE, tabulate
 there is a statistically significant difference in the mean chb patients between the six different groups of the independent variable (i.e., “White", "Black “, "Hispanic", “Non-Hispanic”, “Asian” and “other”). To know which groups exactly different we use the Pairwise comparisons of means with equal variances output that contains the results of our post hoc tests.
 
 Test: Pairwise comparisons result for the Tukey post hoc test
+
 STATA code: . pwmean chb, over(RACE) mcompare(tukey) 
 
 <img width="418" alt="Screen Shot 2023-01-26 at 8 06 25 PM" src="https://user-images.githubusercontent.com/121846325/214984548-caacaf92-7804-45dc-9736-96a55d0b6d76.png">
@@ -66,6 +70,7 @@ STATA code: . pwmean chb, over(RACE) mcompare(tukey)
 Q4) Predict the length of stay in the hospital for patients diagnosed with Anterior STEMI according to their age?
 
 Test: Linear Regression
+
 STATA code: . regress LOS age_chb
 
 
